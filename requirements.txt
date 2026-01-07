@@ -1,0 +1,6 @@
+rasterio
+opencv-python
+numpy
+geopandas
+scikit-learn
+shapely
