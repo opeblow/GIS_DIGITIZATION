@@ -34,7 +34,11 @@ try:
         img = src.read().transpose(1, 2, 0)  
         transform = src.transform
         crs = src.crs
-        height, width = img.shape[:2]
+        if crs is None:
+            from rasterio.crs import CRS
+            crs=CRS.from_epsg(32633)
+            print(f"Warning:No CRS found,using EPSG:32633")
+        height,width=img.shape[:2]
 
     print(f"Loaded {os.path.basename(INPUT_FILE)} | Size: {width}x{height} | CRS: {crs}", flush=True)
 except Exception as e:
